@@ -1,17 +1,18 @@
 ---
 version: "2.1"
 services:
-  ytm-offline-backend:
-    image: aleixmt/ytm-offline:latest
+  ytm-manager-backend:
+    image: aleixmt/ytm-manager-backend:latest
     ports:
       - "0.0.0.0:5000:5000"
     volumes: # Mount secret files (dataverseKey.txt and signalsKey.txt)
       - ./secrets:/usr/src/app/secrets
     restart: unless-stopped
-  ytm-offline-frontend:
-    image: axlfc/ytm-offline-frontend:latest
+
+  ytm-manager-frontend:
+    image: aleixmt/ytm-manager-frontend:latest
     environment:
-      - BACKEND_HOST=ytm-offline-backend
+      - BACKEND_HOST=ytm-manager-backend
     ports:
       - "0.0.0.0:5010:5010"
     restart: unless-stopped
